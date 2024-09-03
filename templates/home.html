@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% block title%} FindPG {% endblock %}
+
+{% block css %}
+
+<style>
+    #btn {
+        font-size: large;
+        border-radius: 15px;
+        background-color: #fe0000;
+    }
+
+    #btn:hover {
+        background-color: white;
+        color: #fe0000;
+    }
+
+    body {
+        background: url('media/pexels-atbo-245219.jpg') no-repeat center center/cover;
+        height: 100vh;
+        width: 100vw;
+        opacity: .8;
+        top: 0;
+        left: 0;
+
+    }
+
+    input {
+        color: red !important;
+        font-size: 20px !important;
+        font-weight: bold !important;
+        text-transform: uppercase !important;
+    }
+
+    .mybtn:hover {
+        background-color: white;
+    }
+
+
+
+    input:invalid {
+        border: 1px solid red;
+    }
+</style>
+{% endblock css %}
+
+{% block body %}
+
+<div class="px-4 py-5 px-md-5 text-center text-lg-start" id="bg">
+
+
+
+    <!-- Jumbotron -->
+
+    <div class="row gx-lg-5 align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+            <h1 class="my-5 display-3 fw-bold ls-tight" style="color: white;">
+                Find Your PG <br />
+                <span class="text-primary">Here
+                </span>
+            </h1>
+
+        </div>
+
+        <div class="col-lg-6 mb-5 mb-lg-0">
+            <div class="card" style="width: 365px;">
+                <div class="card-body py-5 px-md-5" style="background-color: #073952; opacity: .85; color: white;">
+
+                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                    <form action="/" method="post" id="myform">{% csrf_token %}
+                        <div class="row">
+                            <div id='show'></div>
+                            <div class="form-outline">
+                                <label class="form-label" for="city">City</label>
+                                <input type="text" id="city" name="city" pattern="^(DELHI|NOIDA)$"
+                                    list="selectcity" class="form-control" required autocomplete="false" />
+                                <datalist id="selectcity">
+                                    <option value="DELHI">DELHI</option>
+                                    <option value="NOIDA">NOIDA</option>
+
+
+                                </datalist>
+
+                            </div>
+
+                            <div class="form-outline my-4">
+                                <label class="form-label" for="month">Duration(Months)</label>
+                                <input type="number" id="month" name="month" class="form-control" min="1" value="1"
+                                    max="12" required />
+                            </div>
+
+                            <div class="text-center">
+                                <button id="btn" type="submit" onclick="change()" class="btn btn-danger">Book
+                                    Now</button>
+                            </div>
+
+
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Jumbotron -->
+
+</div>
+<footer class="text-center text-white">
+
+    
+</footer>
+
+{% endblock body %}
+{% block js %}
+<script>
+    // const successCallback = (position) => {
+    //     console.log(position);
+    // };
+
+    // const errorCallback = (error) => {
+    //     console.log(error);
+    // };
+
+    // navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+    // console.log(`Latitude : ${crd.latitude}`);
+
+
+    function change() {
+        x = document.getElementById('city').value
+        document.getElementById("myform").action = "/" + x + "/";
+
+
+    }
+    var x = 1
+    setInterval(() => {
+        if (x == 1) {
+
+            document.body.style.background = "url('media/pexels-emre-can-acer-2079246.jpg')  no-repeat center center/cover "
+            x = x + 1
+        }
+        else if (x == 2) {
+            document.body.style.background = "url('media/banner1.jpg')  no-repeat center center/cover "
+            x = x + 1
+
+
+        }
+        else if (x == 3) {
+            document.body.style.background = "url('media/pexels-max-vakhtbovych-7018401.jpg')  no-repeat center center/cover "
+            x = x + 1
+
+
+        }
+        else if (x == 4) {
+            document.body.style.background = "url('media/pexels-lalesh-aldarwish-242827.jpg')  no-repeat center center/cover "
+            x = x + 1
+
+
+        }
+        else if (x == 5) {
+            document.body.style.background = "url('media/pexels-donald-tong-189333.jpg')  no-repeat center center/cover "
+            x = 1
+
+
+        }
+
+
+    }, 10000);
+</script>
+
+{% endblock js %}
